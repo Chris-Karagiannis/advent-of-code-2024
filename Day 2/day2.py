@@ -66,5 +66,5 @@ def count_safe_dampener(reports_list):
 
 
 reports_list = read_reports('input.txt')
-#print(count_safe(reports_list))
-print(count_safe_dampener(reports_list))
+print("Part 1:", count_safe(reports_list))
+print("Part 2:", count_safe_dampener(reports_list))

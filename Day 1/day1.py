@@ -26,7 +26,7 @@ def list_difference(lists):
         temp_diff = abs(left_list[i] - right_list[i])
         difference += temp_diff
 
-    print(difference)
+    return difference
 
 # Part 2 - Similarity score comparing the lists
 def similarity_score(lists):
@@ -39,10 +39,10 @@ def similarity_score(lists):
         right_count = right_list.count(left_list[i])
         similarity_score += left_list[i] * right_count
 
-    print(similarity_score)
+    return similarity_score
 
 
 
 lists = read_lists('input.txt')
-list_difference(lists)
-similarity_score(lists)
+print("Part 1:", list_difference(lists))
+print("Part 2:", similarity_score(lists))
