@@ -36,6 +36,8 @@ for entry in priority_list:
 # Add lines to list if priority is correct
 valid = []
 
+invalid = []
+
 for line in page_numbers:
     for i in range(1, len(line)):
 
@@ -45,10 +47,12 @@ for line in page_numbers:
             # Then checks if the current index value is not in the priority dictionary of the previous index
             # If true, means the previous index doesn't have priority therefore not valid
             if line[i] not in priority[line[i - 1]]:
+                invalid.append(line)
                 break
         
         # If previous value is not in the priority dictionary means it has no priority therefore not valid
         else:
+            invalid.append(line)
             break
         
         # If get to the end of the loop without breaks, means line is valid and can be add to list
@@ -67,4 +71,33 @@ for line in valid:
 print("Part 1:", total)
 
 
+
+# Part 2
+for line in invalid:
+
+    i = 1
+
+    # Sort the invalid list based on priority
+    while i < len(line):
+        if line[i - 1] in priority:
+            if line[i] not in priority[line[i - 1]]:
+                line[i], line[i - 1] = line[i - 1], line[i]
+                i = 1
+                continue
+        else:
+            line[i], line[i - 1] = line[i - 1], line[i]
+            i = 1
+            continue
+        
+        i += 1
+       
+# Add up middle index values
+invalid_total = 0
+
+for line in invalid:
+    line_length = len(line)
+    middle_index = (line_length) // 2
+    invalid_total += int(line[middle_index])        
+    
+print("Part 2:", invalid_total)
 
